@@ -30,7 +30,7 @@ fi
 
 # ブロックするパターン（必要に応じて追加）
 patterns=(
-  'rm[[:space:]]+-[a-zA-Z]*r[a-zA-Z]*f?[[:space:]]+(/|~|\$HOME)([[:space:]]|$)'  # ルート・ホームの再帰削除
+  'rm[[:space:]]+(-[-a-zA-Z]+[[:space:]]+)*(/|~|\$HOME)/?\*?([[:space:]]|$)'  # ルート・ホームの削除（rm -rf / や rm -r -f ~ など）
   'git[[:space:]]+push[[:space:]].*(--force|-f)([[:space:]]|$)'                    # force push
   'git[[:space:]]+push[[:space:]]+[^ ]+[[:space:]]+(main|master)([[:space:]]|$)'   # main への直接 push
   'git[[:space:]]+reset[[:space:]]+--hard'                                          # 変更の破棄
