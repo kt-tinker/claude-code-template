@@ -12,7 +12,8 @@ allowed-tools: Bash(gh issue view:*) Bash(git switch:*) Bash(git add:*) Bash(git
 ## 手順
 
 1. **Issue を読む**
-   - `gh issue view $ARGUMENTS --comments` で本文とコメントを確認する
+   - `gh issue view $ARGUMENTS --json number,title,body,labels,comments` で本文とコメントを確認する
+     - `--json` で取得する項目を指定する。`--comments` だけだと、GitHub 側の Projects (classic) 廃止に関するエラーで失敗することがある
    - 期待する動作・実際の動作・再現手順を 3 行で要約してユーザーに示す
    - 内容が曖昧なら、着手前に質問する
 
