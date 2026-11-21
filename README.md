@@ -50,7 +50,8 @@ Claude Code 公式ドキュメント（`.claude` ディレクトリ / メモリ 
 - **権限ルールの書き方**：`settings.json` では `Bash(npm test:*)` という書き方を使っています。お使いの Claude Code のバージョンで効かない場合は、`Bash(npm test *)`（末尾がスペースのワイルドカード）を試してください
 - **`src/api/CLAUDE.md` はサンプルです**：サブディレクトリに CLAUDE.md を置く書き方の例です。そのままコピーすると `src/api/` ディレクトリが作られるので、使わない場合は削除してください
 - **コマンドは TypeScript / npm の例です**：他の言語では `CLAUDE.md`、`settings.json` の `permissions`、`rules/`、`format-on-edit.sh` を書き換えてください
-- **hook は `jq` に依存しています**：入っていない環境では hook が動かないので、事前にインストールしてください
+- **hook には `jq` か `python3` が必要です**：hook は JSON の読み取りに `jq` を使い、なければ `python3` を使います。どちらもない環境では、安全のため Bash の実行とファイル編集をすべてブロックします（「判定できない」というメッセージが出ます）。事前に `jq` をインストールしておくのがおすすめです（例: `sudo apt install jq`、`brew install jq`）
+  - 背景：hook がエラー（exit 2 以外）で終わると、Claude Code はそれを「ブロックしない」エラーとして扱い、コマンドを実行してしまいます。そのため、判定できないときは exit 2 で止める作りにしています
 - **Windows の場合**：hook はシェルスクリプトなので、WSL か Git Bash 上で Claude Code を使うことを想定しています
 - **秘密情報の保護は完全ではありません**：`permissions.deny` と hook は誤操作を減らすための仕組みです。秘密情報の管理そのものはシークレットマネージャーなどで行ってください
 
@@ -60,7 +61,7 @@ Claude Code 公式ドキュメント（`.claude` ディレクトリ / メモリ 
 2. `CLAUDE.md` の TODO を埋める（まずはここだけで十分）
 3. `.claude/settings.json` の `permissions` を、使っている言語・ツールのコマンドに書き換える
 4. hook スクリプトに実行権限を付ける：`chmod +x .claude/hooks/*.sh .claude/skills/release/scripts/*.sh`
-   - hook は `jq` を使うので、入っていなければインストールする
+   - hook は `jq`（なければ `python3`）を使うので、入っていなければ `jq` をインストールする
 5. 不要な rules / skills / agents は削除する。足りないものは同じ形式で追加する
 6. 個人設定が必要なら `*.example` をリネームする（`.gitignore` 済み）
 7. `user-level-example/` の中身は必要に応じて `~/.claude/` にコピーする
