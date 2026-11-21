@@ -66,7 +66,10 @@ Claude Code 公式ドキュメント（`.claude` ディレクトリ / メモリ 
 6. 個人設定が必要なら `*.example` をリネームする（`.gitignore` 済み）
 7. `user-level-example/` の中身は必要に応じて `~/.claude/` にコピーする
 
-動作確認は Claude Code 内で `/memory`（読み込まれている指示ファイル）、`/context`（コンテキストの内訳）、`/hooks`（登録済みの hook）、`/agents`、`/skills` を使います。
+動作確認は Claude Code 内で `/memory`（読み込まれている指示ファイル）、`/context`（コンテキストの内訳）、`/hooks`（登録済みの hook）、`/list-agents`（サブエージェント）、`/skills`（スキル）を使います（Claude Code v2.1.330 で確認。`/agents` の画面は廃止されています）。
+
+- `paths:` 付きの rules は、読み込まれても `/memory` の一覧には表示されません。効いているかは、該当するファイルを Claude に編集させたときの振る舞いで確認してください
+- 動作確認は `manual mode`（操作のたびに許可を求める標準のモード）で行ってください。`accept edits` や `auto mode` では、確認なしで実行される範囲が変わります
 
 ## 書き分けの原則
 
