@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "model": "claude-opus-5-5",
+  "permissions": {
+    "allow": [
+      "Bash(docker compose:*)",
+      "Bash(git push origin <your-name>/*)"
+    ]
+  },
+  "env": {
+    "DATABASE_URL": "postgresql://localhost:5432/myapp_dev"
+  }
+}

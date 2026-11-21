@@ -1,0 +1,10 @@
+# Claude が git worktree を作るときに、メインのリポジトリからコピーする gitignore 済みファイル
+# .gitignore と同じ書式。一致し、かつ gitignore されているファイルだけがコピーされる
+
+# ローカル環境変数
+.env
+.env.local
+
+# 個人用の Claude 設定
+.claude/settings.local.json
+CLAUDE.local.md

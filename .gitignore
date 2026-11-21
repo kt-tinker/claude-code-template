@@ -1,0 +1,9 @@
+# --- Claude Code（既存の .gitignore に追記する） ---
+# 個人用の設定・指示（チームで共有しない）
+.claude/settings.local.json
+CLAUDE.local.md
+
+# 秘密情報
+.env
+.env.*
+!.env.example
